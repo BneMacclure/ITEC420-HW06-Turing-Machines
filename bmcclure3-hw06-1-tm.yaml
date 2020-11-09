@@ -1,0 +1,23 @@
+name: bmcclure3-hw06-1-tm
+source code: |-
+  # bmcclure3
+  # https://www.radford.edu/~itec420//2020fall-ibarland/Homeworks/hw06.html
+  # Problem 1
+  input: '1-1=1'
+  blank: '_'
+  start state: state0
+  table:
+    state0:
+      [1]: R
+      "-": {write: "-", R: state1}
+      
+    state1: 
+      "=": {write: "=", R: accept}
+      [1]: R
+    
+    accept:
+      [1]: R
+positions:
+  state0: {x: 385.82, y: 250.04}
+  state1: {x: 544.1, y: 248.16}
+  accept: {x: 717.88, y: 248.99}

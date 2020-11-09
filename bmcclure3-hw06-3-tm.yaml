@@ -1,0 +1,46 @@
+name: bmcclure3-hw06-3-tm
+source code: |-
+  # bmcclure3
+  # https://www.radford.edu/~itec420//2020fall-ibarland/Homeworks/hw06.html
+  # Problem 3
+  input: 'ab'
+  blank: ' '
+  start state: w
+  table:
+    w: 
+      'a': {write: 'A', R: goRightToSpace}
+      'b': {write: 'B', R: goRightToSpace}
+      ' ': {R: addTheSign}
+      '_': {R: addTheSign} 
+      
+    addSecUnderScore:
+      ' ': {write: '_', L: goLeftToNextW}
+      
+    goLeftToNextW:
+      ['A', 'B']: {R: w}
+      ['a', 'b', '_', '$']: L
+      
+    goRightToSpace:
+       ' ': {write: '_', R: addSecUnderScore}
+       ['a', 'A', 'b', 'B', '$', '_']: R
+      
+    addTheSign:
+      ' ': {write: '$', L: reverse-inator}
+      ['a', 'A', 'b', 'B', '$', '_']: R
+      
+    reverse-inator:
+      'A': {write: 'a', L}
+      'B': {write: 'b', L}
+      ['_', '$']: L
+      ' ': {R: accept}
+    
+      
+    accept:
+positions:
+  w: {x: 290.99, y: 228}
+  addSecUnderScore: {x: 477.18, y: 47.67}
+  goLeftToNextW: {x: 497.38, y: 149.68}
+  goRightToSpace: {x: 206.62, y: 121.71}
+  addTheSign: {x: 561.52, y: 262.73}
+  reverse-inator: {x: 695.23, y: 309.34}
+  accept: {x: 723.2, y: 417.64}

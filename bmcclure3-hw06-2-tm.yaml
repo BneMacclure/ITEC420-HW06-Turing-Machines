@@ -1,0 +1,90 @@
+name: bmcclure3-hw06-2-tm
+source code: |-
+  # bmcclure3
+  # https://www.radford.edu/~itec420//2020fall-ibarland/Homeworks/hw06.html
+  # Problem 2
+  input: '111-11=1'
+  blank: '_'
+  start state: X
+  # 5 Strings in L
+  # -=
+  # 1-1=
+  # 11-1=1
+  # 1-11=1
+  # 111-1=11
+  table:
+    X:
+      "-": {R: Y}
+      1: {write: '$',R: moveRightToSpaceX}
+      
+    moveRightToSpaceX:
+      '_': {write: 'A', L: moveLeftToSignX}
+      '-': R
+      1: R
+      '=': R
+      'A': R
+      
+    moveLeftToSignX:
+      '$': {R: X}
+      '_': L
+      '-': L
+      1: L
+      '=': L
+      'A': L
+      
+    Y: 
+      "=": {R: accept}
+      1: {write: '$',R: moveRightToSpaceY}
+      
+    moveLeftToSignY:
+      '$': {R: Y}
+      '_': L
+      '-': L
+      1: L
+      '=': L
+      'A': L
+      
+    moveRightToSpaceY:
+      '_': {L: deleteThatA}
+      '-': R
+      1: R
+      '=': R
+      'A': R
+      
+    deleteThatA:
+      'A': {write: '_', L: moveLeftToSignY}
+      
+    #Z
+    accept:
+      1: {write: '$', R: moveRightToSpaceZ} 
+      
+    moveRightToSpaceZ:
+      '_': {L: deleteThatAZ}
+      '-': R
+      1: R
+      '=': R
+      'A': R
+      
+    deleteThatAZ:
+      'A': {write: '_', L: moveLeftToSignZ}
+      
+    moveLeftToSignZ:
+      '$': {R: accept}
+      '_': L
+      '-': L
+      1: L
+      '=': L
+      'A': L
+      
+positions:
+  X: {x: 113.73, y: 242.06}
+  moveRightToSpaceX: {x: 110.18, y: 349}
+  moveLeftToSignX: {x: 40.65, y: 189.51}
+  Y: {x: 251.46, y: 238.79}
+  moveLeftToSignY: {x: 271.72, y: 104.58}
+  moveRightToSpaceY: {x: 410, y: 199.02}
+  deleteThatA: {x: 418.3, y: 108.81}
+  accept: {x: 541.09, y: 394.27}
+  moveRightToSpaceZ: {x: 690.79, y: 326.29}
+  deleteThatAZ: {x: 732.58, y: 168.89}
+  moveLeftToSignZ: {x: 555.46, y: 241.97}
